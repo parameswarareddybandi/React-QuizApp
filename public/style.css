@@ -1,0 +1,62 @@
+#app {
+    margin: 0 auto;
+    padding: 15px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background: white;
+    height: 100vh;
+    width: 80vw;
+  }
+  
+  li {
+    list-style-type: none;
+    border-bottom: 3px solid white;
+    padding: 5px 10px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  img {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  
+  body {
+    background-color: rgb(69, 68, 68);
+  }
+
+#buttons {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+#questionForm {
+  display: flex;
+  justify-content:center;
+}
+
+#optionForm {
+  display: flex;
+justify-content: center;
+}
+
+button:hover {
+    transform: scale(1.2,1.2);
+}
+
+button {
+    margin: 30px 0;
+    background-color: black;
+    color: white;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+button:disabled {
+  background: rgb(227, 226, 226);
+}
