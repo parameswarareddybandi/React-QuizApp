@@ -1,0 +1,72 @@
+#app {
+  margin: 0 auto;
+  padding: 15px;
+  border: 3px solid black;
+  border-radius: 10px;
+  background: white;
+}
+
+li {
+  list-style-type: none;
+  border: 3px solid black;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#result {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+}
+
+img {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+body {
+  background-color: rgb(69, 68, 68);
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+#questionForm {
+  display: flex;
+  justify-content: center;
+}
+
+#optionForm {
+  display: flex;
+  justify-content: center;
+}
+
+button:hover {
+  transform: scale(0.9, 0.9);
+  background-color: crimson;
+  color: white;
+}
+
+button {
+  margin: 20px 0;
+  background-color: black;
+  color: white;
+  width: 40vh;
+  height: 40px;
+  border-radius: 10px;
+  font-size: large;
+}
