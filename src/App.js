@@ -4,29 +4,20 @@ import { questions } from "./Questions";
 function App() {
   const [currentQsnIndex, updateIndex] = useState(0);
   const currentQsn = questions[currentQsnIndex];
-  const onFirstQuestion = currentQsnIndex === 0;
-  const onLastQuestion = currentQsnIndex === questions.length - 1;
+  let [score, setScore] = useState(0);
 
   function validateOption(e) {
     var ans = +e.target.value;
+    
+      if (ans === questions[currentQsnIndex].correctAnswer) {
+        const radioButtons = document.getElementsByName("options");
+        for (let i = 0; i < radioButtons.length; i++) {
+          if (radioButtons[i].checked) {
+            setScore(++score);
+          } 
+        }
+      } 
 
-    if (ans === questions[currentQsnIndex].correctAnswer) {
-      document.body.style.background = 'green';
-      const radioButtons = document.getElementsByName("options");
-      for (let i = 0; i < radioButtons.length; i++) {
-        radioButtons[i].disabled = true;
-      }
-    } else {
-      document.body.style.background = 'red';
-      const radioButtons = document.getElementsByName("options");
-      for (let i = 0; i < radioButtons.length; i++) {
-        radioButtons[i].disabled = true;
-      }
-    }
-
-    setTimeout(() => {
-      document.body.style.background = 'rgb(69, 68, 68)';
-    }, 3000);
   }
 
   function deselectOption() {
@@ -36,6 +27,7 @@ function App() {
       radioButtons[i].checked = false;
     }
   }
+
 
 
   if (currentQsnIndex < questions.length) {
@@ -48,18 +40,12 @@ function App() {
           <div id="optionForm">
           <ul>
             {currentQsn.answers.map((a, i) => (
-              <li key={"qsn_" + i}><input type="radio" name="options" value={i} onClick={(e) => { validateOption(e) }} required />{a}</li>
+              <li key={"qsn_" + i}><input className="radioInput" type="radio" name="options" id={i} value={i} onClick={(e) => { validateOption(e) }} required />{a}</li>
             ))}
           </ul>
         </div>
         <div id="buttons">
-          <button onClick={() => {
-            updateIndex(prevIndex => prevIndex - 1);
-            const radioButtons = document.getElementsByName("options");
-            for (let i = 0; i < radioButtons.length; i++) {
-              radioButtons[i].disabled = false;
-            }
-          }} disabled={onFirstQuestion}>Prev</button>
+
           <button onClick={() => {
             updateIndex(prevIndex => prevIndex + 1);
             deselectOption();
@@ -67,16 +53,26 @@ function App() {
             for (let i = 0; i < radioButtons.length; i++) {
               radioButtons[i].disabled = false;
             }
-          }} disabled={onLastQuestion}>Next</button>
+          }} >Next</button>
+
         </div>
       </div>
     );
   } else {
+    if(score >= 7){
+      document.body.style.background = "green";
+    }
+    else{
+      document.body.style.background = "red";
+    }
     return (
-      <div>
-        <h1>Thank You</h1>
-        <button onClick={() => { updateIndex(0); }}>Reset</button>
+
+      <div id="result">
+        <h1> Score </h1>
+        <h3> You scored {score} out of 10.</h3>
+        <button className="retake" onClick={() => { updateIndex(0); }}>Retake the test</button>
       </div>
+
     );
   }
 
